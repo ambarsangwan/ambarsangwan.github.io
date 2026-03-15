@@ -10,19 +10,22 @@
   />
   <style>
     :root {
-      --navy: #081a33;
-      --navy-2: #0c2347;
-      --blue: #2d6cdf;
-      --light-blue: #8fb6ff;
-      --text: #11213b;
-      --muted: #5f708d;
+      --navy: #07182f;
+      --navy-deep: #04101f;
+      --navy-soft: #0f2747;
+      --blue: #7ea9ff;
+      --blue-strong: #4d7ee8;
+      --text: #12233d;
+      --muted: #62738f;
       --white: #ffffff;
-      --bg: #f5f8fc;
-      --card: rgba(255, 255, 255, 0.08);
-      --border: rgba(255, 255, 255, 0.18);
-      --shadow: 0 20px 60px rgba(5, 18, 40, 0.25);
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --line: rgba(10, 28, 55, 0.08);
+      --line-light: rgba(255, 255, 255, 0.14);
+      --shadow: 0 18px 60px rgba(5, 18, 40, 0.10);
       --radius: 22px;
-      --maxw: 1200px;
+      --maxw: 1240px;
+      --nav-h: 84px;
     }
 
     * {
@@ -35,6 +38,933 @@
 
     body {
       margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(92%, var(--maxw));
+      margin: 0 auto;
+    }
+
+    .section-shell {
+      background: var(--white);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+    }
+
+    /* NAV */
+    .nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 100;
+      transition: background 0.28s ease, backdrop-filter 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav.scrolled {
+      background: rgba(5, 15, 30, 0.78);
+      backdrop-filter: blur(12px);
+      border-bottom-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+    }
+
+    .nav-inner {
+      min-height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+      color: var(--white);
+    }
+
+    .brand img {
+      height: 42px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 14px rgba(0,0,0,0.25));
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.05;
+    }
+
+    .brand-text .name {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .brand-text .sub {
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: rgba(255, 255, 255, 0.72);
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 0;
+      height: 1.5px;
+      background: rgba(255, 255, 255, 0.95);
+      transition: width 0.22s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.16);
+      color: var(--white);
+      background: rgba(255,255,255,0.08);
+      font-weight: 600;
+      transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease;
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.14);
+      border-color: rgba(255,255,255,0.24);
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      color: var(--white);
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(3, 10, 21, 0.82) 0%, rgba(4, 14, 28, 0.72) 32%, rgba(5, 15, 31, 0.42) 58%, rgba(5, 15, 31, 0.52) 100%),
+        linear-gradient(180deg, rgba(7, 24, 47, 0.12) 0%, rgba(7, 24, 47, 0.42) 100%),
+        url("hero.jpg") center center / cover no-repeat;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 16% 18%, rgba(126, 169, 255, 0.18), transparent 24%),
+        radial-gradient(circle at 78% 72%, rgba(77, 126, 232, 0.12), transparent 22%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 160px;
+      background: linear-gradient(180deg, rgba(5,15,31,0) 0%, rgba(5,15,31,0.55) 100%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding-top: calc(var(--nav-h) + 28px);
+      padding-bottom: 44px;
+    }
+
+    .hero-content {
+      width: 100%;
+      max-width: 860px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(8px);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 700;
+      color: rgba(255,255,255,0.84);
+      margin-bottom: 26px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--blue);
+      box-shadow: 0 0 14px rgba(126, 169, 255, 0.8);
+      flex: 0 0 auto;
+    }
+
+    .hero h1 {
+      margin: 0 0 20px;
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 0.94;
+      letter-spacing: -0.045em;
+      max-width: 900px;
+      font-weight: 700;
+    }
+
+    .hero-subtitle {
+      margin: 0 0 20px;
+      max-width: 760px;
+      font-size: clamp(1.05rem, 1.9vw, 1.28rem);
+      line-height: 1.55;
+      color: rgba(255,255,255,0.88);
+    }
+
+    .hero-copy {
+      margin: 0 0 34px;
+      max-width: 740px;
+      font-size: 1.02rem;
+      color: rgba(255,255,255,0.74);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 34px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.97rem;
+      transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease, color 0.22s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--white);
+      color: var(--navy);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.18);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      color: var(--white);
+      border-color: rgba(255,255,255,0.20);
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.13);
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      max-width: 860px;
+    }
+
+    .metric {
+      padding: 18px 18px 16px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      backdrop-filter: blur(10px);
+    }
+
+    .metric-title {
+      color: var(--white);
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .metric-copy {
+      color: rgba(255,255,255,0.72);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    /* MAIN WRAP */
+    .main-wrap {
+      position: relative;
+      z-index: 3;
+      margin-top: -42px;
+      padding-bottom: 40px;
+    }
+
+    /* SECTION BASICS */
+    section {
+      padding: 88px 0;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 32px;
+      align-items: end;
+      margin-bottom: 42px;
+    }
+
+    .section-kicker {
+      color: var(--blue-strong);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 12px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1.04;
+      letter-spacing: -0.04em;
+      max-width: 640px;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.04rem;
+      max-width: 620px;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .about-panel {
+      padding: 34px;
+      border-radius: 26px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+      border: 1px solid var(--line);
+    }
+
+    .about-panel.large {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .about-panel h3 {
+      margin: 0 0 14px;
+      color: var(--navy);
+      font-size: 1.2rem;
+    }
+
+    .about-panel p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .about-list {
+      margin: 20px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .about-list li {
+      padding-left: 18px;
+      position: relative;
+      color: var(--muted);
+    }
+
+    .about-list li::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--blue-strong);
+      position: absolute;
+      left: 0;
+      top: 10px;
+    }
+
+    .mini-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .mini-stat {
+      padding: 20px;
+      border-radius: 20px;
+      background: #0b2243;
+      color: var(--white);
+    }
+
+    .mini-stat strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .mini-stat span {
+      color: rgba(255,255,255,0.72);
+      font-size: 0.92rem;
+    }
+
+    /* STRATEGY */
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .strategy-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 12px 36px rgba(8, 26, 51, 0.05);
+    }
+
+    .strategy-card .num {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--blue-strong);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .strategy-card h3 {
+      margin: 0 0 10px;
+      color: var(--navy);
+      font-size: 1.14rem;
+    }
+
+    .strategy-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* FOCUS */
+    .focus-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+    }
+
+    .focus-main,
+    .focus-side {
+      display: grid;
+      gap: 18px;
+    }
+
+    .focus-card {
+      border-radius: 26px;
+      padding: 30px;
+      background: linear-gradient(180deg, #ffffff 0%, #f9fbfe 100%);
+      border: 1px solid var(--line);
+      box-shadow: 0 12px 36px rgba(8, 26, 51, 0.05);
+    }
+
+    .focus-card.dark {
+      background: linear-gradient(145deg, #081a33 0%, #102b52 100%);
+      border-color: rgba(255,255,255,0.06);
+      color: var(--white);
+    }
+
+    .focus-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.22rem;
+      color: inherit;
+    }
+
+    .focus-card p {
+      margin: 0;
+      color: inherit;
+      opacity: 0.82;
+    }
+
+    /* CONTACT CTA */
+    .cta {
+      position: relative;
+      overflow: hidden;
+      border-radius: 30px;
+      padding: 46px;
+      background:
+        linear-gradient(135deg, rgba(6, 19, 38, 0.96) 0%, rgba(14, 37, 71, 0.96) 100%);
+      color: var(--white);
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .cta::before {
+      content: "";
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      right: -120px;
+      top: -80px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(126, 169, 255, 0.22), transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta h3 {
+      margin: 0 0 12px;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      max-width: 640px;
+    }
+
+    .cta p {
+      margin: 0;
+      color: rgba(255,255,255,0.78);
+      max-width: 700px;
+    }
+
+    .cta-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 14px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+    }
+
+    .btn-light {
+      background: var(--white);
+      color: var(--navy);
+    }
+
+    .btn-outline-light {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.18);
+      color: var(--white);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 10px 0 38px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding-top: 18px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a:hover {
+      color: var(--navy);
+    }
+
+    /* MOBILE */
+    @media (max-width: 1100px) {
+      .section-heading,
+      .about-grid,
+      .focus-grid,
+      .cta,
+      .strategy-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-actions {
+        justify-content: flex-start;
+      }
+
+      .hero-content {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-inner {
+        min-height: auto;
+        padding-top: 124px;
+        padding-bottom: 56px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.6rem, 12vw, 4.2rem);
+      }
+
+      .hero-metrics,
+      .mini-stats {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 72px 0;
+      }
+
+      .cta {
+        padding: 34px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        width: min(94%, var(--maxw));
+      }
+
+      .hero-actions,
+      .cta-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .about-panel,
+      .strategy-card,
+      .focus-card {
+        padding: 24px;
+      }
+
+      .cta {
+        padding: 28px 22px;
+        border-radius: 24px;
+      }
+
+      .section-shell {
+        border-radius: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav" id="navbar">
+    <div class="container nav-inner">
+      <a href="#top" class="brand">
+        <img src="logo.png" alt="Vaari Capital Logo" />
+        <div class="brand-text">
+          <span class="name">Vaari Capital</span>
+          <span class="sub">Maritime Investments</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#strategy">Strategy</a>
+        <a href="#focus">Focus Areas</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a class="nav-cta" href="mailto:info@vaaricapital.com">Get in touch</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <div class="eyebrow">Maritime-focused investment platform</div>
+
+          <h1>Direct maritime investments with institutional discipline.</h1>
+
+          <p class="hero-subtitle">
+            Vaari Capital is a maritime-focused investment platform pursuing high-quality opportunities across shipping and related real asset strategies.
+          </p>
+
+          <p class="hero-copy">
+            We focus on differentiated maritime opportunities supported by commercial clarity, disciplined structuring, downside awareness and long-duration value creation.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#about">Explore Vaari Capital</a>
+            <a class="btn btn-secondary" href="mailto:info@vaaricapital.com">Contact us</a>
+          </div>
+
+          <div class="hero-metrics">
+            <div class="metric">
+              <div class="metric-title">Institutional mindset</div>
+              <div class="metric-copy">Disciplined underwriting, rigorous transaction evaluation and structured downside awareness.</div>
+            </div>
+            <div class="metric">
+              <div class="metric-title">Maritime specialization</div>
+              <div class="metric-copy">Dedicated sector focus across shipping, leasing and maritime-linked real asset opportunities.</div>
+            </div>
+            <div class="metric">
+              <div class="metric-title">Flexible capital lens</div>
+              <div class="metric-copy">Capability to assess a range of structures, counterparties and asset situations with selectivity.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="main-wrap">
+      <div class="container">
+        <div class="section-shell">
+          <section id="about">
+            <div class="container">
+              <div class="section-heading">
+                <div>
+                  <div class="section-kicker">About</div>
+                  <h2>A focused platform for maritime asset opportunities.</h2>
+                </div>
+                <p>
+                  Vaari Capital is being built to identify, structure and execute differentiated maritime investments across shipping and adjacent sectors for investors seeking commercially grounded exposure to real assets.
+                </p>
+              </div>
+
+              <div class="about-grid">
+                <div class="about-panel large">
+                  <div>
+                    <h3>Platform overview</h3>
+                    <p>
+                      The platform is intended to pursue select maritime opportunities where sector understanding, transaction discipline and structuring capability can support attractive risk-adjusted outcomes.
+                    </p>
+
+                    <ul class="about-list">
+                      <li>Maritime-led perspective across shipping and related real asset strategies</li>
+                      <li>Emphasis on commercial visibility, counterparties and downside discipline</li>
+                      <li>Execution-oriented approach rooted in structuring and transaction judgement</li>
+                      <li>Flexible mandate across asset classes and investor return profiles</li>
+                    </ul>
+                  </div>
+
+                  <div class="mini-stats">
+                    <div class="mini-stat">
+                      <strong>Direct investing approach</strong>
+                      <span>Focused on opportunities where underwriting discipline and market knowledge matter.</span>
+                    </div>
+                    <div class="mini-stat">
+                      <strong>Real asset orientation</strong>
+                      <span>Maritime investments grounded in asset relevance, market context and structure.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="about-panel">
+                  <h3>What defines Vaari</h3>
+                  <p>
+                    Vaari Capital is intended to sit at the intersection of sector specialization, institutional presentation and practical execution. The emphasis is on selectivity rather than volume, and on opportunities where structure and judgement can materially influence outcomes.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="strategy">
+            <div class="container">
+              <div class="section-heading">
+                <div>
+                  <div class="section-kicker">Strategy</div>
+                  <h2>Built around asset quality, cash flow clarity and disciplined structuring.</h2>
+                </div>
+                <p>
+                  The platform is intended to evaluate maritime opportunities where commercial fundamentals, asset backing and transaction structure can support resilient investment cases.
+                </p>
+              </div>
+
+              <div class="strategy-grid">
+                <div class="strategy-card">
+                  <div class="num">01</div>
+                  <h3>Underwrite from the asset upward</h3>
+                  <p>
+                    Assess maritime opportunities through a bottom-up commercial, technical and structural lens rather than through thematic positioning alone.
+                  </p>
+                </div>
+
+                <div class="strategy-card">
+                  <div class="num">02</div>
+                  <h3>Prioritize visibility and resilience</h3>
+                  <p>
+                    Focus on situations where earnings durability, counterparty quality and contractual alignment can improve investment clarity.
+                  </p>
+                </div>
+
+                <div class="strategy-card">
+                  <div class="num">03</div>
+                  <h3>Selectively pursue differentiated situations</h3>
+                  <p>
+                    Target opportunities where sector insight, network access or structuring capability may create a meaningful edge in origination or underwriting.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="focus">
+            <div class="container">
+              <div class="section-heading">
+                <div>
+                  <div class="section-kicker">Focus Areas</div>
+                  <h2>Targeting maritime opportunities across a flexible opportunity set.</h2>
+                </div>
+                <p>
+                  The platform may evaluate opportunities across shipping and maritime-linked real assets where risk can be better understood, structured and managed.
+                </p>
+              </div>
+
+              <div class="focus-grid">
+                <div class="focus-main">
+                  <div class="focus-card dark">
+                    <h3>Shipping assets</h3>
+                    <p>
+                      Select vessel and fleet opportunities across commercial segments where asset quality, charter dynamics and market relevance are compelling.
+                    </p>
+                  </div>
+
+                  <div class="focus-card">
+                    <h3>Leasing and structured exposure</h3>
+                    <p>
+                      Capital solutions designed around asset backing, contractual alignment and investor-specific risk preferences.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="focus-side">
+                  <div class="focus-card">
+                    <h3>Maritime-adjacent strategies</h3>
+                    <p>
+                      Related sectors and infrastructure opportunities connected to shipping, trade flows and strategic maritime value chains.
+                    </p>
+                  </div>
+
+                  <div class="focus-card">
+                    <h3>Selective mandate</h3>
+                    <p>
+                      Flexibility to assess a range of situations while maintaining high selectivity, underwriting rigor and institutional discipline.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="contact">
+            <div class="container">
+              <div class="cta">
+                <div>
+                  <h3>Interested in maritime investment opportunities with an institutional lens?</h3>
+                  <p>
+                    Vaari Capital is being developed as a platform for disciplined, high-conviction maritime investing. For introductions, discussions or strategic collaboration, please get in touch.
+                  </p>
+                </div>
+
+                <div class="cta-actions">
+                  <a class="btn btn-light" href="mailto:info@vaaricapital.com">Email Vaari Capital</a>
+                  <a class="btn btn-outline-light" href="#top">Back to top</a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <footer>
+          <div class="footer-inner">
+            <div>© 2026 Vaari Capital. All rights reserved.</div>
+            <div class="footer-links">
+              <a href="#about">About</a>
+              <a href="#strategy">Strategy</a>
+              <a href="#focus">Focus Areas</a>
+              <a href="#contact">Contact</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const navbar = document.getElementById("navbar");
+
+    window.addEventListener("scroll", function () {
+      if (window.scrollY > 20) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+  </script>
+</body>
+</html>      margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       color: var(--text);
       background: var(--bg);
