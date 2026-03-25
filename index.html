@@ -68,6 +68,10 @@
       border: 1px solid var(--line);
     }
 
+    .muted {
+      color: var(--muted);
+    }
+
     /* NAV */
     .nav {
       position: fixed;
@@ -470,72 +474,61 @@
       font-size: 0.92rem;
     }
 
-    .team-section {
-      margin-top: 32px;
-      padding-top: 32px;
-      border-top: 1px solid var(--line);
-    }
-
-    .team-section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 24px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-    }
-
-    .team-section-header h3 {
-      margin: 0;
-      color: var(--navy);
-      font-size: 1.35rem;
-    }
-
-    .team-section-header p {
-      margin: 0;
-      max-width: 720px;
-      color: var(--muted);
+    /* TEAM */
+    .team-intro {
+      margin-bottom: 28px;
     }
 
     .team-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 24px;
+      gap: 28px;
+      align-items: start;
     }
 
     .team-card {
-      padding: 28px;
-      border-radius: 26px;
+      padding: 30px;
+      border-radius: 28px;
       border: 1px solid var(--line);
       background: linear-gradient(180deg, #ffffff 0%, #f7faff 100%);
       box-shadow: 0 12px 36px rgba(8, 26, 51, 0.05);
     }
 
     .team-photo-wrap {
-      margin-bottom: 18px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 22px;
+      padding: 18px;
+      min-height: 430px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, #eef4fb 0%, #f8fbff 100%);
+      border: 1px solid var(--line);
+      overflow: visible;
     }
 
     .team-photo {
       width: 100%;
-      max-width: 220px;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      border-radius: 22px;
-      border: 1px solid var(--line);
-      box-shadow: 0 12px 28px rgba(8, 26, 51, 0.10);
-      background: #e9eef7;
+      max-width: 360px;
+      height: auto;
+      max-height: 470px;
+      object-fit: contain;
+      object-position: center top;
+      border-radius: 18px;
+      background: transparent;
     }
 
-    .team-card h4 {
+    .team-card h3 {
       margin: 0;
       color: var(--navy);
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       line-height: 1.15;
     }
 
     .team-role {
       margin-top: 6px;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
       color: var(--blue-strong);
       font-size: 0.84rem;
       font-weight: 800;
@@ -627,54 +620,65 @@
       opacity: 0.82;
     }
 
-    /* CONTACT CTA */
-    .cta {
-      position: relative;
-      overflow: hidden;
-      border-radius: 30px;
-      padding: 46px;
-      background:
-        linear-gradient(135deg, rgba(6, 19, 38, 0.96) 0%, rgba(14, 37, 71, 0.96) 100%);
-      color: var(--white);
+    /* CONTACT */
+    .contact-grid {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 28px;
-      align-items: center;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 24px;
+      align-items: stretch;
     }
 
-    .cta::before {
+    .contact-card,
+    .contact-panel {
+      border-radius: 30px;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      box-shadow: 0 12px 36px rgba(8, 26, 51, 0.05);
+    }
+
+    .contact-card {
+      padding: 44px;
+      background: linear-gradient(135deg, rgba(6, 19, 38, 0.98) 0%, rgba(14, 37, 71, 0.96) 100%);
+      color: var(--white);
+      position: relative;
+    }
+
+    .contact-card::before {
       content: "";
       position: absolute;
       width: 340px;
       height: 340px;
       right: -120px;
-      top: -80px;
+      top: -90px;
       border-radius: 50%;
       background: radial-gradient(circle, rgba(126, 169, 255, 0.22), transparent 70%);
       pointer-events: none;
     }
 
-    .cta h3 {
-      margin: 0 0 12px;
+    .contact-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-card h3 {
+      margin: 0 0 14px;
       font-size: clamp(1.9rem, 4vw, 2.8rem);
       line-height: 1.02;
       letter-spacing: -0.03em;
       max-width: 640px;
     }
 
-    .cta p {
-      margin: 0;
+    .contact-card p {
+      margin: 0 0 28px;
       color: rgba(255,255,255,0.78);
       max-width: 700px;
     }
 
-    .cta-actions {
+    .contact-actions {
       display: flex;
-      justify-content: flex-end;
       gap: 14px;
       flex-wrap: wrap;
-      position: relative;
-      z-index: 2;
+      margin-bottom: 22px;
     }
 
     .btn-light {
@@ -686,6 +690,47 @@
       background: rgba(255,255,255,0.08);
       border-color: rgba(255,255,255,0.18);
       color: var(--white);
+    }
+
+    .contact-note {
+      color: rgba(255,255,255,0.66);
+      font-size: 0.92rem;
+    }
+
+    .contact-panel {
+      padding: 34px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    }
+
+    .contact-panel h4 {
+      margin: 0 0 16px;
+      color: var(--navy);
+      font-size: 1.2rem;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .contact-item {
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: #f4f8ff;
+      border: 1px solid var(--line);
+    }
+
+    .contact-item strong {
+      display: block;
+      color: var(--navy);
+      margin-bottom: 4px;
+      font-size: 1rem;
+    }
+
+    .contact-item a {
+      color: var(--blue-strong);
+      font-weight: 600;
+      word-break: break-word;
     }
 
     /* FOOTER */
@@ -718,19 +763,11 @@
     @media (max-width: 1100px) {
       .section-heading,
       .about-grid,
-      .focus-grid,
-      .cta,
       .strategy-grid,
-      .team-grid {
+      .focus-grid,
+      .team-grid,
+      .contact-grid {
         grid-template-columns: 1fr;
-      }
-
-      .cta-actions {
-        justify-content: flex-start;
-      }
-
-      .hero-content {
-        max-width: 100%;
       }
     }
 
@@ -763,8 +800,22 @@
         padding: 72px 0;
       }
 
-      .cta {
-        padding: 34px;
+      .contact-card,
+      .contact-panel,
+      .about-panel,
+      .strategy-card,
+      .focus-card,
+      .team-card {
+        padding: 26px;
+      }
+
+      .team-photo-wrap {
+        min-height: 360px;
+      }
+
+      .team-photo {
+        max-width: 300px;
+        max-height: 400px;
       }
     }
 
@@ -774,7 +825,7 @@
       }
 
       .hero-actions,
-      .cta-actions {
+      .contact-actions {
         flex-direction: column;
         align-items: stretch;
       }
@@ -783,24 +834,18 @@
         width: 100%;
       }
 
-      .about-panel,
-      .strategy-card,
-      .focus-card,
-      .team-card {
-        padding: 24px;
-      }
-
-      .cta {
-        padding: 28px 22px;
-        border-radius: 24px;
-      }
-
       .section-shell {
         border-radius: 24px;
       }
 
+      .team-photo-wrap {
+        min-height: 300px;
+        padding: 14px;
+      }
+
       .team-photo {
-        max-width: 180px;
+        max-width: 250px;
+        max-height: 340px;
       }
     }
   </style>
@@ -818,12 +863,13 @@
 
       <nav class="nav-links">
         <a href="#about">About</a>
+        <a href="#team">Team</a>
         <a href="#strategy">Strategy</a>
         <a href="#focus">Focus Areas</a>
         <a href="#contact">Contact</a>
       </nav>
 
-      <a class="nav-cta" href="mailto:info@vaaricapital.com">Get in touch</a>
+      <a class="nav-cta" href="mailto:Ambar@vaaricapital.com,Chris@vaaricapital.com">Contact us</a>
     </div>
   </header>
 
@@ -845,7 +891,7 @@
 
           <div class="hero-actions">
             <a class="btn btn-primary" href="#about">Explore Vaari Capital</a>
-            <a class="btn btn-secondary" href="mailto:info@vaaricapital.com">Contact us</a>
+            <a class="btn btn-secondary" href="mailto:Ambar@vaaricapital.com,Chris@vaaricapital.com">Contact us</a>
           </div>
 
           <div class="hero-metrics">
@@ -859,7 +905,7 @@
             </div>
             <div class="metric">
               <div class="metric-title">Flexible capital lens</div>
-              <div class="metric-copy">Capability to assess a range of lease structures (Bareboat, BBHP and Time Charter), counterparties and asset situations with selectivity.</div>
+              <div class="metric-copy">Capability to assess a range of lease structures, counterparties and asset situations with selectivity.</div>
             </div>
           </div>
         </div>
@@ -916,69 +962,75 @@
                   </p>
                 </div>
               </div>
+            </div>
+          </section>
 
-              <div class="team-section">
-                <div class="team-section-header">
-                  <div>
-                    <div class="section-kicker">Partners</div>
-                    <h3>Leadership team</h3>
+          <section id="team">
+            <div class="container">
+              <div class="section-heading">
+                <div>
+                  <div class="section-kicker">Team</div>
+                  <h2>Senior maritime and investment leadership with complementary execution experience.</h2>
+                </div>
+                <p>
+                  Vaari Capital is led by senior professionals with experience spanning ship owning, maritime finance, M&amp;A, strategic advisory, capital markets and fundraising.
+                </p>
+              </div>
+
+              <div class="team-intro muted">
+                The photo frames below have been reworked to reduce auto-cropping. Use portrait images with some whitespace above the head for the cleanest fit.
+              </div>
+
+              <div class="team-grid">
+                <article class="team-card">
+                  <div class="team-photo-wrap">
+                    <img src="chris-peters.jpg" alt="Chris Peters" class="team-photo" />
                   </div>
-                  <p>
-                    Vaari Capital is led by senior maritime and investment professionals with complementary experience across ship owning, maritime finance, M&amp;A, strategic advisory and institutional capital formation.
-                  </p>
-                </div>
+                  <h3>Chris Peters</h3>
+                  <div class="team-role">Partner</div>
+                  <div class="team-bio">
+                    <p>
+                      Chris is a senior maritime executive with over 35 years of experience across maritime banking, ship ownership, and investment leadership. He joined Montfort Maritime in April 2023 as SEO and Partner of Montfort Capital. Prior to that, he was the CEO of Emirates Ship Investment Company (Eships), where he also served as CFO. He held leadership roles in Eships through Eships ownership under Mubadala, Oldendorff and finally Tristar.
+                    </p>
+                    <p>
+                      Prior to this, he held senior shipping banking roles with Nordea and GE, with experience across shipping IPO, ECM, and DCM transactions.
+                    </p>
+                    <p>
+                      He brings deep commercial judgment, capital allocation expertise, and extensive experience across ship owning, structured finance, and maritime transactions.
+                    </p>
+                    <p>
+                      Across his career, he has completed shipping asset acquisitions with a gross asset value of over USD 2 billion.
+                    </p>
+                    <p>
+                      Chris holds a BSc in Financial Economics from Birkbeck College, University of London, and an MBA in Strategy and Finance from City University, London.
+                    </p>
+                  </div>
+                </article>
 
-                <div class="team-grid">
-                  <article class="team-card">
-                    <div class="team-photo-wrap">
-                      <img src="chris-peters.jpg" alt="Chris Peters" class="team-photo" />
-                    </div>
-                    <h4>Chris Peters</h4>
-                    <div class="team-role">Partner</div>
-                    <div class="team-bio">
-                      <p>
-                        Chris is a senior maritime executive with over 35 years of experience across maritime banking, ship ownership, and investment leadership. He joined Montfort Maritime in April 2023 as SEO and Partner of Montfort Capital. Prior to that, he was the CEO of Emirates Ship Investment Company (Eships), where he also served as CFO. He held leadership roles in Eships through its ownership under Mubadala, Oldendorff and finally Tristar.
-                      </p>
-                      <p>
-                        Prior to this, he held senior shipping banking roles with Nordea and GE, with experience across shipping IPO, ECM, and DCM transactions.
-                      </p>
-                      <p>
-                        He brings deep commercial judgment, capital allocation expertise, and extensive experience across ship owning, structured finance, and maritime transactions.
-                      </p>
-                      <p>
-                        Across his career, he has completed shipping asset acquisitions with a gross asset value of over USD 2 billion.
-                      </p>
-                      <p>
-                        Chris holds a BSc in Financial Economics from Birkbeck College, University of London, and an MBA in Strategy and Finance from City University, London.
-                      </p>
-                    </div>
-                  </article>
-
-                  <article class="team-card">
-                    <div class="team-photo-wrap">
-                      <img src="ambar-sangwan.jpg" alt="Ambar Sangwan" class="team-photo" />
-                    </div>
-                    <h4>Ambar Sangwan</h4>
-                    <div class="team-role">Partner</div>
-                    <div class="team-bio">
-                      <p>
-                        Ambar is a senior investment professional with over 22 years of global experience in maritime investments, M&amp;A, strategic advisory, and fundraising. He joined Montfort Capital as Partner in May 2025. Prior to this, he was Chief Strategy Officer and Board member at Synergy Marine Group, where he led the acquisition of Maersk Tankers’ technical management business and the sale of a minority stake to Searchlight Capital.
-                      </p>
-                      <p>
-                        He previously managed over USD 250 million of liquid investments for a family office and led corporate development at Anglo-Eastern, including playing a key role in its merger with Univan.
-                      </p>
-                      <p>
-                        He brings deep origination capability, transaction execution expertise, strategic judgment, and a differentiated network across the maritime and shipping ecosystem.
-                      </p>
-                      <p>
-                        Across his career, he has completed maritime corporate and asset transactions totaling over USD 1.3 billion.
-                      </p>
-                      <p>
-                        Ambar is a former seafarer and holds an MBA from HEC Paris, with additional coursework at Harvard Business School and The Fletcher School of Law and Diplomacy.
-                      </p>
-                    </div>
-                  </article>
-                </div>
+                <article class="team-card">
+                  <div class="team-photo-wrap">
+                    <img src="ambar-sangwan.jpg" alt="Ambar Sangwan" class="team-photo" />
+                  </div>
+                  <h3>Ambar Sangwan</h3>
+                  <div class="team-role">Partner</div>
+                  <div class="team-bio">
+                    <p>
+                      Ambar is a senior investment professional with over 22 years of global experience in maritime investments, M&amp;A, strategic advisory, and fundraising. He joined Montfort Capital as Partner in May 2025. Prior to this, he was Chief Strategy Officer and Board member at Synergy Marine Group, where he led the acquisition of Maersk Tankers’ technical management business and the sale of a minority stake to Searchlight Capital.
+                    </p>
+                    <p>
+                      He previously managed over USD 250 million of liquid investments for a family office and led corporate development at Anglo-Eastern, including playing a key role in its merger with Univan.
+                    </p>
+                    <p>
+                      He brings deep origination capability, transaction execution expertise, strategic judgment, and a differentiated network across the maritime and shipping ecosystem.
+                    </p>
+                    <p>
+                      Across his career, he has completed maritime corporate and asset transactions totaling over USD 1.3 billion.
+                    </p>
+                    <p>
+                      Ambar is a former seafarer and holds an MBA from HEC Paris, with additional coursework at Harvard Business School and The Fletcher School of Law and Diplomacy.
+                    </p>
+                  </div>
+                </article>
               </div>
             </div>
           </section>
@@ -1073,17 +1125,43 @@
 
           <section id="contact">
             <div class="container">
-              <div class="cta">
+              <div class="section-heading">
                 <div>
+                  <div class="section-kicker">Contact</div>
+                  <h2>Connect directly with the Vaari Capital partners.</h2>
+                </div>
+                <p>
+                  For discussions around maritime opportunities, partnerships, or strategic collaboration, please reach out directly using the contact details below.
+                </p>
+              </div>
+
+              <div class="contact-grid">
+                <div class="contact-card">
                   <h3>Interested in maritime investment opportunities with an institutional lens?</h3>
                   <p>
-                    Vaari Capital is being developed as a platform for disciplined, high-conviction maritime investing. For introductions, discussions or strategic collaboration, please get in touch.
+                    Vaari Capital is being developed as a platform for disciplined, high-conviction maritime investing. For introductions, discussions or strategic collaboration, please contact Chris Peters or Ambar Sangwan directly.
                   </p>
+
+                  <div class="contact-actions">
+                    <a class="btn btn-light" href="mailto:Ambar@vaaricapital.com,Chris@vaaricapital.com">Contact us</a>
+                    <a class="btn btn-outline-light" href="#top">Back to top</a>
+                  </div>
+
+                  <div class="contact-note">The generic info@ address has been removed from all contact links in this version.</div>
                 </div>
 
-                <div class="cta-actions">
-                  <a class="btn btn-light" href="mailto:info@vaaricapital.com">Email Vaari Capital</a>
-                  <a class="btn btn-outline-light" href="#top">Back to top</a>
+                <div class="contact-panel">
+                  <h4>Direct email contacts</h4>
+                  <div class="contact-list">
+                    <div class="contact-item">
+                      <strong>Ambar Sangwan</strong>
+                      <a href="mailto:Ambar@vaaricapital.com">Ambar@vaaricapital.com</a>
+                    </div>
+                    <div class="contact-item">
+                      <strong>Chris Peters</strong>
+                      <a href="mailto:Chris@vaaricapital.com">Chris@vaaricapital.com</a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1095,6 +1173,7 @@
             <div>© 2026 Vaari Capital. All rights reserved.</div>
             <div class="footer-links">
               <a href="#about">About</a>
+              <a href="#team">Team</a>
               <a href="#strategy">Strategy</a>
               <a href="#focus">Focus Areas</a>
               <a href="#contact">Contact</a>
