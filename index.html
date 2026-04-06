@@ -4,1195 +4,560 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vaari Capital</title>
-  <meta
-    name="description"
-    content="Vaari Capital is a maritime-focused investment platform pursuing direct opportunities across shipping and maritime-linked assets."
-  />
   <style>
-    :root {
-      --navy: #07182f;
-      --navy-deep: #04101f;
-      --navy-soft: #0f2747;
-      --blue: #7ea9ff;
-      --blue-strong: #4d7ee8;
-      --text: #12233d;
-      --muted: #62738f;
-      --white: #ffffff;
-      --bg: #f4f7fb;
-      --card: #ffffff;
-      --line: rgba(10, 28, 55, 0.08);
-      --line-light: rgba(255, 255, 255, 0.14);
-      --shadow: 0 18px 60px rgba(5, 18, 40, 0.10);
-      --radius: 22px;
-      --maxw: 1240px;
-      --nav-h: 84px;
-    }
-
     * {
       box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #0b1d2b 0%, #10293d 45%, #16354d 100%);
+      color: #f2f5f7;
+      line-height: 1.5;
     }
 
     a {
-      text-decoration: none;
       color: inherit;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
+      text-decoration: none;
     }
 
     .container {
-      width: min(92%, var(--maxw));
+      width: 90%;
+      max-width: 1280px;
       margin: 0 auto;
     }
 
-    .section-shell {
-      background: var(--white);
-      border-radius: 30px;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--line);
+    header {
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(8, 20, 31, 0.88);
+      backdrop-filter: blur(10px);
     }
 
-    .muted {
-      color: var(--muted);
-    }
-
-    /* NAV */
     .nav {
-      position: fixed;
-      inset: 0 0 auto 0;
-      z-index: 100;
-      transition: background 0.28s ease, backdrop-filter 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
-      border-bottom: 1px solid transparent;
-    }
-
-    .nav.scrolled {
-      background: rgba(5, 15, 30, 0.78);
-      backdrop-filter: blur(12px);
-      border-bottom-color: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
-    }
-
-    .nav-inner {
-      min-height: var(--nav-h);
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       gap: 20px;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: 0;
-      color: var(--white);
-    }
-
-    .brand img {
-      height: 42px;
-      width: auto;
-      object-fit: contain;
-      filter: drop-shadow(0 4px 14px rgba(0,0,0,0.25));
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.05;
-    }
-
-    .brand-text .name {
-      font-size: 1rem;
+    .logo {
+      font-size: 26px;
       font-weight: 700;
-      letter-spacing: 0.01em;
-    }
-
-    .brand-text .sub {
-      font-size: 0.74rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: rgba(255, 255, 255, 0.72);
-      font-weight: 600;
-      margin-top: 4px;
+      letter-spacing: 1px;
     }
 
     .nav-links {
       display: flex;
-      align-items: center;
-      gap: 28px;
-      color: rgba(255, 255, 255, 0.88);
-      font-size: 0.95rem;
-      font-weight: 500;
+      gap: 24px;
+      font-size: 15px;
+      color: rgba(255,255,255,0.85);
     }
 
-    .nav-links a {
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -8px;
-      width: 0;
-      height: 1.5px;
-      background: rgba(255, 255, 255, 0.95);
-      transition: width 0.22s ease;
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 11px 18px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.16);
-      color: var(--white);
-      background: rgba(255,255,255,0.08);
-      font-weight: 600;
-      transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease;
-      white-space: nowrap;
-    }
-
-    .nav-cta:hover {
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.14);
-      border-color: rgba(255,255,255,0.24);
-    }
-
-    /* HERO */
     .hero {
-      position: relative;
-      min-height: 100svh;
-      color: var(--white);
-      overflow: hidden;
-      background:
-        linear-gradient(90deg, rgba(3, 10, 21, 0.82) 0%, rgba(4, 14, 28, 0.72) 32%, rgba(5, 15, 31, 0.42) 58%, rgba(5, 15, 31, 0.52) 100%),
-        linear-gradient(180deg, rgba(7, 24, 47, 0.12) 0%, rgba(7, 24, 47, 0.42) 100%),
-        url("hero.jpg") center center / cover no-repeat;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 16% 18%, rgba(126, 169, 255, 0.18), transparent 24%),
-        radial-gradient(circle at 78% 72%, rgba(77, 126, 232, 0.12), transparent 22%);
-      pointer-events: none;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: auto 0 0 0;
-      height: 160px;
-      background: linear-gradient(180deg, rgba(5,15,31,0) 0%, rgba(5,15,31,0.55) 100%);
-      pointer-events: none;
+      padding: 90px 0 70px;
     }
 
     .hero-inner {
-      position: relative;
-      z-index: 2;
-      min-height: 100svh;
-      display: flex;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
       align-items: center;
-      padding-top: calc(var(--nav-h) + 28px);
-      padding-bottom: 44px;
-    }
-
-    .hero-content {
-      width: 100%;
-      max-width: 860px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 9px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.15);
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(8px);
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-weight: 700;
-      color: rgba(255,255,255,0.84);
-      margin-bottom: 26px;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--blue);
-      box-shadow: 0 0 14px rgba(126, 169, 255, 0.8);
-      flex: 0 0 auto;
     }
 
     .hero h1 {
-      margin: 0 0 20px;
-      font-size: clamp(3rem, 7vw, 6rem);
-      line-height: 0.94;
-      letter-spacing: -0.045em;
-      max-width: 900px;
+      font-size: 54px;
+      line-height: 1.05;
+      margin-bottom: 18px;
       font-weight: 700;
     }
 
-    .hero-subtitle {
-      margin: 0 0 20px;
-      max-width: 760px;
-      font-size: clamp(1.05rem, 1.9vw, 1.28rem);
-      line-height: 1.55;
-      color: rgba(255,255,255,0.88);
+    .hero p {
+      font-size: 18px;
+      color: rgba(255,255,255,0.82);
+      max-width: 700px;
+      margin-bottom: 28px;
     }
 
-    .hero-copy {
-      margin: 0 0 34px;
-      max-width: 740px;
-      font-size: 1.02rem;
-      color: rgba(255,255,255,0.74);
-    }
-
-    .hero-actions {
+    .hero-buttons {
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
-      margin-bottom: 34px;
     }
 
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 50px;
-      padding: 0 22px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 0.97rem;
-      transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease, color 0.22s ease;
-      border: 1px solid transparent;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: 0.25s ease;
     }
 
     .btn-primary {
-      background: var(--white);
-      color: var(--navy);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.18);
+      background: #d7e6f2;
+      color: #0b1d2b;
+    }
+
+    .btn-primary:hover {
+      background: #ffffff;
     }
 
     .btn-secondary {
-      background: rgba(255,255,255,0.08);
-      color: var(--white);
-      border-color: rgba(255,255,255,0.20);
-      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      background: rgba(255,255,255,0.04);
     }
 
     .btn-secondary:hover {
-      background: rgba(255,255,255,0.13);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.22);
+    }
+
+    .hero-card h3 {
+      font-size: 20px;
+      margin-bottom: 18px;
     }
 
     .hero-metrics {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      max-width: 860px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
     }
 
     .metric {
-      padding: 18px 18px 16px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.14);
-      backdrop-filter: blur(10px);
+      padding: 18px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.06);
     }
 
-    .metric-title {
-      color: var(--white);
+    .metric-value {
+      font-size: 26px;
       font-weight: 700;
-      font-size: 1rem;
       margin-bottom: 6px;
     }
 
-    .metric-copy {
-      color: rgba(255,255,255,0.72);
-      font-size: 0.92rem;
-      line-height: 1.5;
+    .metric-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.74);
     }
 
-    /* MAIN WRAP */
-    .main-wrap {
-      position: relative;
-      z-index: 3;
-      margin-top: -42px;
-      padding-bottom: 40px;
-    }
-
-    /* SECTION BASICS */
     section {
-      padding: 88px 0;
+      padding: 56px 0;
     }
 
     .section-heading {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 32px;
-      align-items: end;
-      margin-bottom: 42px;
-    }
-
-    .section-kicker {
-      color: var(--blue-strong);
-      font-size: 0.78rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      margin-bottom: 12px;
+      margin-bottom: 28px;
+      max-width: 860px;
     }
 
     .section-heading h2 {
-      margin: 0;
-      color: var(--navy);
-      font-size: clamp(2rem, 4vw, 3.25rem);
-      line-height: 1.04;
-      letter-spacing: -0.04em;
-      max-width: 640px;
+      font-size: 36px;
+      margin-bottom: 12px;
     }
 
     .section-heading p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1.04rem;
-      max-width: 620px;
+      color: rgba(255,255,255,0.8);
+      font-size: 17px;
     }
 
-    /* ABOUT */
-    .about-grid {
+    .strategy-grid {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 24px;
-      align-items: stretch;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
     }
 
-    .about-panel {
+    .strategy-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 24px;
+      min-height: 220px;
+    }
+
+    .strategy-card h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .strategy-card p {
+      color: rgba(255,255,255,0.78);
+      font-size: 15px;
+    }
+
+    /* TEAM SECTION */
+    .team-section-wrap {
+      background: rgba(255,255,255,0.05);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 70px 0;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .team-shell {
+      background: rgba(6, 16, 26, 0.35);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 28px;
       padding: 34px;
-      border-radius: 26px;
-      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
-      border: 1px solid var(--line);
-    }
-
-    .about-panel.large {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .about-panel h3 {
-      margin: 0 0 14px;
-      color: var(--navy);
-      font-size: 1.2rem;
-    }
-
-    .about-panel p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .about-list {
-      margin: 20px 0 0;
-      padding: 0;
-      list-style: none;
-      display: grid;
-      gap: 12px;
-    }
-
-    .about-list li {
-      padding-left: 18px;
-      position: relative;
-      color: var(--muted);
-    }
-
-    .about-list li::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--blue-strong);
-      position: absolute;
-      left: 0;
-      top: 10px;
-    }
-
-    .mini-stats {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-      margin-top: 22px;
-    }
-
-    .mini-stat {
-      padding: 20px;
-      border-radius: 20px;
-      background: #0b2243;
-      color: var(--white);
-    }
-
-    .mini-stat strong {
-      display: block;
-      font-size: 1rem;
-      margin-bottom: 6px;
-    }
-
-    .mini-stat span {
-      color: rgba(255,255,255,0.72);
-      font-size: 0.92rem;
-    }
-
-    /* TEAM */
-    .team-intro {
-      margin-bottom: 28px;
+      box-shadow: 0 16px 45px rgba(0,0,0,0.18);
     }
 
     .team-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 28px;
-      align-items: start;
     }
 
     .team-card {
-      padding: 30px;
-      border-radius: 28px;
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, #ffffff 0%, #f7faff 100%);
-      box-shadow: 0 12px 36px rgba(8, 26, 51, 0.05);
+      display: flex;
+      gap: 22px;
+      align-items: flex-start;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 22px;
+      min-height: 280px;
     }
 
     .team-photo-wrap {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 22px;
-      padding: 18px;
-      min-height: 430px;
-      border-radius: 24px;
-      background: linear-gradient(180deg, #eef4fb 0%, #f8fbff 100%);
-      border: 1px solid var(--line);
-      overflow: visible;
+      flex: 0 0 150px;
+      width: 150px;
+      height: 190px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
     }
 
     .team-photo {
       width: 100%;
-      max-width: 360px;
-      height: auto;
-      max-height: 470px;
-      object-fit: contain;
-      object-position: center top;
-      border-radius: 18px;
-      background: transparent;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
-    .team-card h3 {
-      margin: 0;
-      color: var(--navy);
-      font-size: 1.4rem;
-      line-height: 1.15;
+    .team-info {
+      flex: 1;
+      min-width: 0;
     }
 
-    .team-role {
-      margin-top: 6px;
-      margin-bottom: 18px;
-      color: var(--blue-strong);
-      font-size: 0.84rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
+    .team-info h3 {
+      font-size: 24px;
+      margin-bottom: 6px;
     }
 
-    .team-bio {
-      display: grid;
-      gap: 14px;
+    .team-title {
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(215, 230, 242, 0.12);
+      color: #d7e6f2;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
     }
 
     .team-bio p {
-      margin: 0;
-      color: var(--muted);
+      margin: 0 0 14px 0;
+      color: rgba(255,255,255,0.84);
+      font-size: 15px;
+      line-height: 1.65;
     }
 
-    /* STRATEGY */
-    .strategy-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px;
+    .team-bio p:last-child {
+      margin-bottom: 0;
     }
 
-    .strategy-card {
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 24px;
+    .contact-box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
       padding: 28px;
-      box-shadow: 0 12px 36px rgba(8, 26, 51, 0.05);
     }
 
-    .strategy-card .num {
-      font-size: 0.9rem;
-      font-weight: 800;
-      color: var(--blue-strong);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+    .contact-box h3 {
+      font-size: 24px;
       margin-bottom: 10px;
     }
 
-    .strategy-card h3 {
-      margin: 0 0 10px;
-      color: var(--navy);
-      font-size: 1.14rem;
+    .contact-box p {
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 12px;
     }
 
-    .strategy-card p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    /* FOCUS */
-    .focus-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 24px;
-    }
-
-    .focus-main,
-    .focus-side {
-      display: grid;
-      gap: 18px;
-    }
-
-    .focus-card {
-      border-radius: 26px;
-      padding: 30px;
-      background: linear-gradient(180deg, #ffffff 0%, #f9fbfe 100%);
-      border: 1px solid var(--line);
-      box-shadow: 0 12px 36px rgba(8, 26, 51, 0.05);
-    }
-
-    .focus-card.dark {
-      background: linear-gradient(145deg, #081a33 0%, #102b52 100%);
-      border-color: rgba(255,255,255,0.06);
-      color: var(--white);
-    }
-
-    .focus-card h3 {
-      margin: 0 0 10px;
-      font-size: 1.22rem;
-      color: inherit;
-    }
-
-    .focus-card p {
-      margin: 0;
-      color: inherit;
-      opacity: 0.82;
-    }
-
-    /* CONTACT */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 24px;
-      align-items: stretch;
-    }
-
-    .contact-card,
-    .contact-panel {
-      border-radius: 30px;
-      border: 1px solid var(--line);
-      overflow: hidden;
-      box-shadow: 0 12px 36px rgba(8, 26, 51, 0.05);
-    }
-
-    .contact-card {
-      padding: 44px;
-      background: linear-gradient(135deg, rgba(6, 19, 38, 0.98) 0%, rgba(14, 37, 71, 0.96) 100%);
-      color: var(--white);
-      position: relative;
-    }
-
-    .contact-card::before {
-      content: "";
-      position: absolute;
-      width: 340px;
-      height: 340px;
-      right: -120px;
-      top: -90px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(126, 169, 255, 0.22), transparent 70%);
-      pointer-events: none;
-    }
-
-    .contact-card > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .contact-card h3 {
-      margin: 0 0 14px;
-      font-size: clamp(1.9rem, 4vw, 2.8rem);
-      line-height: 1.02;
-      letter-spacing: -0.03em;
-      max-width: 640px;
-    }
-
-    .contact-card p {
-      margin: 0 0 28px;
-      color: rgba(255,255,255,0.78);
-      max-width: 700px;
-    }
-
-    .contact-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 22px;
-    }
-
-    .btn-light {
-      background: var(--white);
-      color: var(--navy);
-    }
-
-    .btn-outline-light {
-      background: rgba(255,255,255,0.08);
-      border-color: rgba(255,255,255,0.18);
-      color: var(--white);
-    }
-
-    .contact-note {
-      color: rgba(255,255,255,0.66);
-      font-size: 0.92rem;
-    }
-
-    .contact-panel {
-      padding: 34px;
-      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
-    }
-
-    .contact-panel h4 {
-      margin: 0 0 16px;
-      color: var(--navy);
-      font-size: 1.2rem;
-    }
-
-    .contact-list {
-      display: grid;
-      gap: 16px;
-    }
-
-    .contact-item {
-      padding: 18px 20px;
-      border-radius: 20px;
-      background: #f4f8ff;
-      border: 1px solid var(--line);
-    }
-
-    .contact-item strong {
-      display: block;
-      color: var(--navy);
-      margin-bottom: 4px;
-      font-size: 1rem;
-    }
-
-    .contact-item a {
-      color: var(--blue-strong);
-      font-weight: 600;
-      word-break: break-word;
-    }
-
-    /* FOOTER */
     footer {
-      padding: 10px 0 38px;
-      color: var(--muted);
-      font-size: 0.94rem;
+      padding: 28px 0 50px;
+      color: rgba(255,255,255,0.6);
+      font-size: 14px;
     }
 
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      padding-top: 18px;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a:hover {
-      color: var(--navy);
-    }
-
-    /* MOBILE */
     @media (max-width: 1100px) {
-      .section-heading,
-      .about-grid,
-      .strategy-grid,
-      .focus-grid,
-      .team-grid,
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 860px) {
-      .nav-links,
-      .nav-cta {
-        display: none;
-      }
-
-      .hero {
-        min-height: auto;
-      }
-
       .hero-inner {
-        min-height: auto;
-        padding-top: 124px;
-        padding-bottom: 56px;
-      }
-
-      .hero h1 {
-        font-size: clamp(2.6rem, 12vw, 4.2rem);
-      }
-
-      .hero-metrics,
-      .mini-stats {
         grid-template-columns: 1fr;
       }
 
-      section {
-        padding: 72px 0;
+      .strategy-grid {
+        grid-template-columns: 1fr;
       }
 
-      .contact-card,
-      .contact-panel,
-      .about-panel,
-      .strategy-card,
-      .focus-card,
-      .team-card {
-        padding: 26px;
-      }
-
-      .team-photo-wrap {
-        min-height: 360px;
-      }
-
-      .team-photo {
-        max-width: 300px;
-        max-height: 400px;
+      .team-grid {
+        grid-template-columns: 1fr;
       }
     }
 
-    @media (max-width: 560px) {
-      .container {
-        width: min(94%, var(--maxw));
+    @media (max-width: 720px) {
+      .hero h1 {
+        font-size: 38px;
       }
 
-      .hero-actions,
-      .contact-actions {
+      .nav {
         flex-direction: column;
-        align-items: stretch;
+        align-items: flex-start;
       }
 
-      .btn {
-        width: 100%;
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 14px;
       }
 
-      .section-shell {
-        border-radius: 24px;
+      .team-card {
+        flex-direction: column;
       }
 
       .team-photo-wrap {
-        min-height: 300px;
-        padding: 14px;
+        width: 100%;
+        max-width: 240px;
+        height: 280px;
       }
 
-      .team-photo {
-        max-width: 250px;
-        max-height: 340px;
+      .team-shell {
+        padding: 22px;
+      }
+
+      .hero-metrics {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
-  <header class="nav" id="navbar">
-    <div class="container nav-inner">
-      <a href="#top" class="brand">
-        <img src="logo.png" alt="Vaari Capital Logo" />
-        <div class="brand-text">
-          <span class="name">Vaari Capital</span>
-          <span class="sub">Maritime Investments</span>
-        </div>
-      </a>
 
+  <header>
+    <div class="container nav">
+      <div class="logo">Vaari Capital</div>
       <nav class="nav-links">
-        <a href="#about">About</a>
-        <a href="#team">Team</a>
+        <a href="#home">Home</a>
         <a href="#strategy">Strategy</a>
-        <a href="#focus">Focus Areas</a>
+        <a href="#team">Team</a>
         <a href="#contact">Contact</a>
       </nav>
-
-      <a class="nav-cta" href="mailto:Ambar@vaaricapital.com,Chris@vaaricapital.com">Contact us</a>
     </div>
   </header>
 
-  <main id="top">
-    <section class="hero">
+  <main>
+    <section class="hero" id="home">
       <div class="container hero-inner">
-        <div class="hero-content">
-          <div class="eyebrow">Maritime-focused investment platform</div>
-
-          <h1>Direct maritime investments with institutional discipline.</h1>
-
-          <p class="hero-subtitle">
-            Vaari Capital is a maritime-focused investment platform pursuing high-quality opportunities across shipping and related real asset strategies.
+        <div>
+          <h1>Institutional capital for maritime and real-asset platforms</h1>
+          <p>
+            Vaari Capital is focused on maritime investments, strategic asset platforms, and
+            long-duration opportunities across shipping, logistics, and adjacent infrastructure.
           </p>
-
-          <p class="hero-copy">
-            We focus on differentiated maritime opportunities supported by commercial clarity, disciplined structuring, downside awareness and long-duration value creation.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#about">Explore Vaari Capital</a>
-            <a class="btn btn-secondary" href="mailto:Ambar@vaaricapital.com,Chris@vaaricapital.com">Contact us</a>
+          <div class="hero-buttons">
+            <a href="#team" class="btn btn-primary">Meet the Team</a>
+            <a href="#contact" class="btn btn-secondary">Contact Us</a>
           </div>
+        </div>
 
+        <div class="hero-card">
+          <h3>Platform Highlights</h3>
           <div class="hero-metrics">
             <div class="metric">
-              <div class="metric-title">Institutional mindset</div>
-              <div class="metric-copy">Disciplined underwriting, rigorous transaction evaluation and structured downside awareness.</div>
+              <div class="metric-value">USD 3.3Bn+</div>
+              <div class="metric-label">Combined maritime transaction experience</div>
             </div>
             <div class="metric">
-              <div class="metric-title">Maritime specialization</div>
-              <div class="metric-copy">Dedicated sector focus across shipping segments such as Tankers, Gas Carriers, Dry Bulk and Containers.</div>
+              <div class="metric-value">Global</div>
+              <div class="metric-label">Reach across shipping, ports, and logistics</div>
             </div>
             <div class="metric">
-              <div class="metric-title">Flexible capital lens</div>
-              <div class="metric-copy">Capability to assess a range of lease structures, counterparties and asset situations with selectivity.</div>
+              <div class="metric-value">Institutional</div>
+              <div class="metric-label">Focus on capital, structure, and execution</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">Sector-led</div>
+              <div class="metric-label">Deep operating and technical capability</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <div class="main-wrap">
+    <section id="strategy">
       <div class="container">
-        <div class="section-shell">
-          <section id="about">
-            <div class="container">
-              <div class="section-heading">
-                <div>
-                  <div class="section-kicker">About</div>
-                  <h2>A focused platform for maritime asset opportunities.</h2>
-                </div>
-                <p>
-                  Vaari Capital is being built to identify, structure and execute differentiated maritime investments across shipping and adjacent sectors for investors seeking commercially grounded exposure to real assets.
-                </p>
-              </div>
-
-              <div class="about-grid">
-                <div class="about-panel large">
-                  <div>
-                    <h3>Platform overview</h3>
-                    <p>
-                      The platform is intended to pursue select maritime opportunities where sector understanding, transaction discipline and structuring capability can support attractive risk-adjusted outcomes.
-                    </p>
-
-                    <ul class="about-list">
-                      <li>Maritime-led perspective across shipping and related real asset strategies</li>
-                      <li>Emphasis on commercial visibility, counterparties and downside discipline</li>
-                      <li>Execution-oriented approach rooted in structuring and transaction judgement</li>
-                      <li>Flexible mandate across asset classes and investor return profiles</li>
-                    </ul>
-                  </div>
-
-                  <div class="mini-stats">
-                    <div class="mini-stat">
-                      <strong>Direct investing approach</strong>
-                      <span>Focused on opportunities where underwriting discipline and market knowledge matter.</span>
-                    </div>
-                    <div class="mini-stat">
-                      <strong>Real asset orientation</strong>
-                      <span>Maritime investments grounded in asset relevance, market context and structure.</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="about-panel">
-                  <h3>What defines Vaari</h3>
-                  <p>
-                    Vaari Capital is intended to sit at the intersection of sector specialization, institutional presentation and practical execution. The emphasis is on selectivity rather than volume, and on opportunities where structure and judgement can materially influence outcomes.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section id="team">
-            <div class="container">
-              <div class="section-heading">
-                <div>
-                  <div class="section-kicker">Team</div>
-                  <h2>Senior maritime and investment leadership with complementary execution experience.</h2>
-                </div>
-                <p>
-                  Vaari Capital is led by senior professionals with experience spanning ship owning, maritime finance, M&amp;A, strategic advisory, capital markets and fundraising.
-                </p>
-              </div>
-
-              <div class="team-intro muted">
-              </div>
-
-              <div class="team-grid">
-                <article class="team-card">
-                  <div class="team-photo-wrap">
-                    <img src="ambar-sangwan.jpg" alt="Ambar Sangwan" class="team-photo" />
-                  </div>
-                  <h3>Ambar Sangwan</h3>
-                  <div class="team-role">Partner</div>
-                  <div class="team-bio">
-                    <p>
-                      Ambar is a senior investment professional with over 22 years of global experience in maritime investments, M&amp;A, strategic advisory, and fundraising. He joined Montfort Capital as Partner in May 2025. Prior to this, he was Chief Strategy Officer and Board member at Synergy Marine Group, where he led the acquisition of Maersk Tankers’ technical management business and the sale of a minority stake to Searchlight Capital.
-                    </p>
-                    <p>
-                      He previously managed over USD 250 million of liquid investments for a family office and led corporate development at Anglo-Eastern, including playing a key role in its merger with Univan.
-                    </p>
-                    <p>
-                      He brings deep origination capability, transaction execution expertise, strategic judgment, and a differentiated network across the maritime and shipping ecosystem.
-                    </p>
-                    <p>
-                      Across his career, he has completed maritime corporate and asset transactions totaling over USD 1.3 billion.
-                    </p>
-                    <p>
-                      Ambar is a former seafarer and holds an MBA from HEC Paris, with additional coursework at Harvard Business School and The Fletcher School of Law and Diplomacy.
-                    </p>
-                  </div>
-                </article>
-
-                <article class="team-card">
-                  <div class="team-photo-wrap">
-                    <img src="chris-peters.jpg" alt="Chris Peters" class="team-photo" />
-                  </div>
-                  <h3>Chris Peters</h3>
-                  <div class="team-role">Partner</div>
-                  <div class="team-bio">
-                    <p>
-                      Chris is a senior maritime executive with over 35 years of experience across maritime banking, ship ownership, and investment leadership. He joined Montfort Maritime in April 2023 as SEO of Montfort Capital. Prior to that, he was the CEO of Emirates Ship Investment Company (Eships), where he also served as CFO. He held leadership roles in Eships through Eships ownership under Mubadala, Oldendorff and finally Tristar.
-                    </p>
-                    <p>
-                      Prior to this, he held senior shipping banking roles with Nordea and GE, with experience across shipping IPO, ECM, and DCM transactions.
-                    </p>
-                    <p>
-                      He brings deep commercial judgment, capital allocation expertise, and extensive experience across ship owning, structured finance, and maritime transactions.
-                    </p>
-                    <p>
-                      Across his career, he has completed shipping asset acquisitions with a gross asset value of over USD 2 billion.
-                    </p>
-                    <p>
-                      Chris holds a BSc in Financial Economics from Birkbeck College, University of London, and an MBA in Strategy and Finance from City University, London.
-                    </p>
-                  </div>
-                </article>
-              </div>
-            </div>
-          </section>
-
-          <section id="strategy">
-            <div class="container">
-              <div class="section-heading">
-                <div>
-                  <div class="section-kicker">Strategy</div>
-                  <h2>Built around high-quality maritime assets, charter-backed cash flows and disciplined structuring.</h2>
-                </div>
-                <p>
-                  The platform evaluates maritime opportunities where asset fundamentals, contractual cash flow visibility and capital structure alignment can support resilient long-term value creation. Opportunities may span multiple shipping and maritime service segments, with underwriting tailored to the specific risk-return profile of bareboat, time charter and other contracted deployment strategies.
-                </p>
-              </div>
-
-              <div class="strategy-grid">
-                <div class="strategy-card">
-                  <div class="num">01</div>
-                  <h3>Underwrite asset-by-asset</h3>
-                  <p>
-                    Evaluate each opportunity through a bottom-up lens focused on asset quality, technical fit, market positioning, earnings capacity and residual value. Underwriting reflects the distinct dynamics of each segment, including tankers, gas carriers, containers, offshore and maritime services.
-                  </p>
-                </div>
-
-                <div class="strategy-card">
-                  <div class="num">02</div>
-                  <h3>Focus on contracted earnings visibility</h3>
-                  <p>
-                    Prioritize structures where charter coverage, counterparty quality and duration support cash flow visibility and downside protection. Assess bareboat and time charter optionality carefully, with attention to the allocation of operating risk, market exposure and financing efficiency.
-                  </p>
-                </div>
-
-                <div class="strategy-card">
-                  <div class="num">03</div>
-                  <h3>Originate where structure creates edge</h3>
-                  <p>
-                    Pursue opportunities where origination access, sector knowledge and transaction structuring can unlock differentiated entry points. This includes situations where charter strategy, asset aggregation or capital solutions can enhance return quality relative to broadly intermediated market opportunities.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section id="focus">
-            <div class="container">
-              <div class="section-heading">
-                <div>
-                  <div class="section-kicker">Focus Areas</div>
-                  <h2>Targeting maritime opportunities across a flexible opportunity set.</h2>
-                </div>
-                <p>
-                  The platform may evaluate opportunities across shipping and maritime-linked real assets where risk can be better understood, structured and managed.
-                </p>
-              </div>
-
-              <div class="focus-grid">
-                <div class="focus-main">
-                  <div class="focus-card dark">
-                    <h3>Shipping assets</h3>
-                    <p>
-                      Select vessel and fleet opportunities across commercial segments where asset quality, charter dynamics and market relevance are compelling.
-                    </p>
-                  </div>
-
-                  <div class="focus-card">
-                    <h3>Leasing and structured exposure</h3>
-                    <p>
-                      Capital solutions designed around asset backing, contractual alignment and investor-specific risk preferences.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="focus-side">
-                  <div class="focus-card">
-                    <h3>Maritime-adjacent strategies</h3>
-                    <p>
-                      Related sectors and infrastructure opportunities connected to shipping, trade flows and strategic maritime value chains.
-                    </p>
-                  </div>
-
-                  <div class="focus-card">
-                    <h3>Selective mandate</h3>
-                    <p>
-                      Flexibility to assess a range of situations while maintaining high selectivity, underwriting rigor and institutional discipline.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section id="contact">
-            <div class="container">
-              <div class="section-heading">
-                <div>
-                  <div class="section-kicker">Contact</div>
-                  <h2>Connect directly with the Vaari Capital partners.</h2>
-                </div>
-                <p>
-                  For discussions around maritime opportunities, partnerships, or strategic collaboration, please reach out directly using the contact details below.
-                </p>
-              </div>
-
-              <div class="contact-grid">
-                <div class="contact-card">
-                  <h3>Interested in maritime investment opportunities with an institutional lens?</h3>
-                  <p>
-                    Vaari Capital is being developed as a platform for disciplined, high-conviction maritime investing. For introductions, discussions or strategic collaboration, please contact Chris Peters or Ambar Sangwan directly.
-                  </p>
-
-                  <div class="contact-actions">
-                    <a class="btn btn-light" href="mailto:Ambar@vaaricapital.com,Chris@vaaricapital.com">Contact us</a>
-                    <a class="btn btn-outline-light" href="#top">Back to top</a>
-                  </div>
-
-                  <div class="contact-note">The generic info@ address has been removed from all contact links in this version.</div>
-                </div>
-
-                <div class="contact-panel">
-                  <h4>Direct email contacts</h4>
-                  <div class="contact-list">
-                    <div class="contact-item">
-                      <strong>Ambar Sangwan</strong>
-                      <a href="mailto:Ambar@vaaricapital.com">Ambar@vaaricapital.com</a>
-                    </div>
-                    <div class="contact-item">
-                      <strong>Chris Peters</strong>
-                      <a href="mailto:Chris@vaaricapital.com">Chris@vaaricapital.com</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+        <div class="section-heading">
+          <h2>Our Focus</h2>
+          <p>
+            We combine investment judgment, industry networks, structuring capability, and operating insight
+            to pursue differentiated maritime and logistics opportunities.
+          </p>
         </div>
 
-        <footer>
-          <div class="footer-inner">
-            <div>© 2026 Vaari Capital. All rights reserved.</div>
-            <div class="footer-links">
-              <a href="#about">About</a>
-              <a href="#team">Team</a>
-              <a href="#strategy">Strategy</a>
-              <a href="#focus">Focus Areas</a>
-              <a href="#contact">Contact</a>
-            </div>
+        <div class="strategy-grid">
+          <div class="strategy-card">
+            <h3>Maritime Investments</h3>
+            <p>
+              Asset-backed opportunities across shipping, maritime platforms, leasing structures,
+              and strategic fleet development.
+            </p>
           </div>
-        </footer>
+          <div class="strategy-card">
+            <h3>Strategic Advisory</h3>
+            <p>
+              Transaction execution, capital formation, growth strategy, joint ventures,
+              and complex stakeholder-led situations.
+            </p>
+          </div>
+          <div class="strategy-card">
+            <h3>Operational Insight</h3>
+            <p>
+              A differentiated blend of investment, commercial, technical, and fleet management
+              expertise across vessel segments and maritime infrastructure.
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
+
+    <section class="team-section-wrap" id="team">
+      <div class="container">
+        <div class="team-shell">
+          <div class="section-heading">
+            <h2>Leadership Team</h2>
+            <p>
+              Vaari Capital brings together senior professionals across investments, maritime banking,
+              ship ownership, technical operations, and shipping finance. The team combines transaction
+              experience with deep sector knowledge across maritime assets, platforms, and capital structures.
+            </p>
+          </div>
+
+          <div id="team-container" class="team-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <h3>Contact</h3>
+          <p>For inquiries regarding Vaari Capital, strategic partnerships, or investment opportunities, please get in touch.</p>
+          <p>Email: info@vaaricapital.com</p>
+          <p>Dubai, United Arab Emirates</p>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <script>
-    const navbar = document.getElementById("navbar");
+  <footer>
+    <div class="container">
+      © Vaari Capital. All rights reserved.
+    </div>
+  </footer>
 
-    window.addEventListener("scroll", function () {
-      if (window.scrollY > 20) {
-        navbar.classList.add("scrolled");
-      } else {
-        navbar.classList.remove("scrolled");
+  <script>
+    const teamMembers = [
+      {
+        name: "Ambar Sangwan",
+        title: "Partner",
+        image: "images/ambar.jpg",
+        bio: [
+          "Ambar is a senior investment professional with global experience in maritime investments, M&A, strategic advisory, and fundraising.",
+          "He joined Montfort Capital as Partner in May 2025 to set up their ADGM-licensed maritime fund. Prior to this, he was Chief Strategy Officer and Board Member at Synergy Marine, where he led the acquisition of Maersk Tankers’ technical management business and the sale of a minority stake to Searchlight Capital, amongst various other deals.",
+          "He previously managed over USD 250 million of liquid investments for a family office and led corporate development at Anglo-Eastern, including playing a key role in its merger with Univan.",
+          "He brings deep origination capability, transaction execution expertise, strategic judgment, and a differentiated network across the maritime and shipping ecosystem.",
+          "Across his career, he has completed maritime corporate and asset transactions totaling over USD 1.3 billion.",
+          "Ambar holds an MBA from HEC Paris, with additional coursework at Harvard Business School and The Fletcher School of Law and Diplomacy."
+        ]
+      },
+      {
+        name: "Chris Peters",
+        title: "Partner",
+        image: "images/chris.jpg",
+        bio: [
+          "Chris has over 35 years of experience across maritime banking, ship ownership, and maritime investments.",
+          "He was previously SEO and Partner at Montfort Capital and earlier served as CEO and CFO of Emirates Ship Investment Company.",
+          "Prior to that, he held senior roles at Nordea and GE, with extensive experience across shipping IPOs, debt, and capital markets.",
+          "Across his career, he has completed over USD 2 billion in gross asset value shipping acquisitions."
+        ]
+      },
+      {
+        name: "Gurpreet Malhi",
+        title: "Partner",
+        image: "images/gurpreet-placeholder.jpg",
+        bio: [
+          "Gurpreet is a senior Industry executive with a strong global experience in the port, shipping, infrastructure, maritime, and logistics industries.",
+          "Gurpreet was previously the CEO of ALBA (a JV in India with Louis Dreyfus Armateurs). Post that he has been the COO of Mercator Lines (an Indian Ship owner) and GMS (world’s largest buyer of ships for Scrapping) and also the Chief Strategy Officer at Alphard Martime, which is a leading Dubai based ship owner.",
+          "Gurpreet has also raised USD250m in asset backed financing.",
+          "Gurpreet is a Master Mariner and also holds an MBA from HEC Paris. He has completed shipping asset transactions in excess of USD9Bn in Gross Asset Value."
+        ]
+      },
+      {
+        name: "Hendrik Atsma",
+        title: "Technical Director",
+        image: "images/hendrik-placeholder.jpg",
+        bio: [
+          "With over 30 years of experience in the maritime industry, Hendrik is a seasoned maritime executive with industry expertise in ship management and operations of Oil, Chemical, Product, LPG Tankers, Dry Bulk and Container vessels.",
+          "Henik also has extensive experience in newbuilding projects and full regulatory compliance. As the Fleet group Director at Bahri (Saudi Listed shipping company), Hendrik managed a fleet Oil, products and chemical tankers.",
+          "Prior to that, at the Mubadala owned Eships, he managed a fleet of bulk carriers and containers vessels, along with tankers.",
+          "Hendrik has a post graduate business management diploma from Windesheim university of Applied Science and a bachelors in engineering degree from Willem Barentsz."
+        ]
+      },
+      {
+        name: "Abhishek Mittal",
+        title: "Investment Director",
+        image: "images/abhishek-placeholder.jpg",
+        bio: [
+          "Abhishek has over 20 years of experience in the maritime sector with a large part focused on shipping debt investments.",
+          "He spent over a decade in Amsterdam with DVB bank as part of the shipping finance team where, as an SVP in the team, he led multiple shipping finance mandates.",
+          "A former seafarer, Abhishek has also worked with MUFG, in Amsterdam, as part of the risk team.",
+          "He has completed shipping finance transactions in the maritime industry of over USD1Bn.",
+          "Abhishek holds an MBA from Indian Institute of Management, Bangalore and is also a CFA charterholder."
+        ]
       }
-    });
+    ];
+
+    const teamContainer = document.getElementById("team-container");
+
+    teamContainer.innerHTML = teamMembers.map(member => `
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <img src="${member.image}" alt="${member.name}" class="team-photo">
+        </div>
+        <div class="team-info">
+          <h3>${member.name}</h3>
+          <div class="team-title">${member.title}</div>
+          <div class="team-bio">
+            ${member.bio.map(paragraph => `<p>${paragraph}</p>`).join("")}
+          </div>
+        </div>
+      </div>
+    `).join("");
   </script>
+
 </body>
 </html>
