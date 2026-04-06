@@ -11,6 +11,10 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: Arial, Helvetica, sans-serif;
       background: linear-gradient(180deg, #0b1d2b 0%, #10293d 45%, #16354d 100%);
@@ -59,8 +63,32 @@
       color: rgba(255,255,255,0.85);
     }
 
+    /* HERO WITH SHIP BACKGROUND */
     .hero {
-      padding: 90px 0 70px;
+      position: relative;
+      padding: 110px 0 90px;
+      background:
+        linear-gradient(rgba(7, 18, 29, 0.72), rgba(7, 18, 29, 0.80)),
+        url("images/hero-ship.jpg") center center / cover no-repeat;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(8, 20, 31, 0.70) 0%,
+        rgba(8, 20, 31, 0.45) 35%,
+        rgba(8, 20, 31, 0.25) 100%
+      );
+      pointer-events: none;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 2;
     }
 
     .hero-inner {
@@ -75,11 +103,12 @@
       line-height: 1.05;
       margin-bottom: 18px;
       font-weight: 700;
+      max-width: 760px;
     }
 
     .hero p {
       font-size: 18px;
-      color: rgba(255,255,255,0.82);
+      color: rgba(255,255,255,0.86);
       max-width: 700px;
       margin-bottom: 28px;
     }
@@ -111,19 +140,20 @@
     .btn-secondary {
       border: 1px solid rgba(255,255,255,0.2);
       color: #fff;
-      background: rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.05);
     }
 
     .btn-secondary:hover {
-      background: rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.10);
     }
 
     .hero-card {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.10);
       border-radius: 22px;
       padding: 28px;
       box-shadow: 0 18px 50px rgba(0,0,0,0.22);
+      backdrop-filter: blur(6px);
     }
 
     .hero-card h3 {
@@ -139,9 +169,9 @@
 
     .metric {
       padding: 18px;
-      background: rgba(255,255,255,0.05);
+      background: rgba(255,255,255,0.06);
       border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.07);
     }
 
     .metric-value {
@@ -321,6 +351,10 @@
     }
 
     @media (max-width: 720px) {
+      .hero {
+        padding: 80px 0 70px;
+      }
+
       .hero h1 {
         font-size: 38px;
       }
@@ -388,7 +422,7 @@
           <h3>Platform Highlights</h3>
           <div class="hero-metrics">
             <div class="metric">
-              <div class="metric-value">USD 3.3Bn+</div>
+              <div class="metric-value">USD 10Bn+</div>
               <div class="metric-label">Combined maritime transaction experience</div>
             </div>
             <div class="metric">
@@ -484,7 +518,7 @@
       {
         name: "Ambar Sangwan",
         title: "Partner",
-        image: "images/ambar.jpg",
+        image: "./images/ambar.jpg",
         bio: [
           "Ambar is a senior investment professional with global experience in maritime investments, M&A, strategic advisory, and fundraising.",
           "He joined Montfort Capital as Partner in May 2025 to set up their ADGM-licensed maritime fund. Prior to this, he was Chief Strategy Officer and Board Member at Synergy Marine, where he led the acquisition of Maersk Tankers’ technical management business and the sale of a minority stake to Searchlight Capital, amongst various other deals.",
@@ -497,7 +531,7 @@
       {
         name: "Chris Peters",
         title: "Partner",
-        image: "images/chris.jpg",
+        image: "./images/chris.jpg",
         bio: [
           "Chris has over 35 years of experience across maritime banking, ship ownership, and maritime investments.",
           "He was previously SEO and Partner at Montfort Capital and earlier served as CEO and CFO of Emirates Ship Investment Company.",
@@ -508,35 +542,35 @@
       {
         name: "Gurpreet Malhi",
         title: "Partner",
-        image: "images/gurpreet-placeholder.jpg",
+        image: "./images/gurpreet.jpg",
         bio: [
           "Gurpreet is a senior Industry executive with a strong global experience in the port, shipping, infrastructure, maritime, and logistics industries.",
-          "Gurpreet was previously the CEO of ALBA (a JV in India with Louis Dreyfus Armateurs). Post that he has been the COO of Mercator Lines (an Indian Ship owner) and GMS (world’s largest buyer of ships for Scrapping) and also the Chief Strategy Officer at Alphard Martime, which is a leading Dubai based ship owner.",
-          "Gurpreet has also raised USD250m in asset backed financing.",
-          "Gurpreet is a Master Mariner and also holds an MBA from HEC Paris. He has completed shipping asset transactions in excess of USD9Bn in Gross Asset Value."
+          "Gurpreet was previously the CEO of ALBA (a JV in India with Louis Dreyfus Armateurs). Post that he has been the COO of Mercator Lines (an Indian Ship owner) and GMS (world’s largest buyer of ships for scrapping) and also the Chief Strategy Officer at Alphard Maritime, which is a leading Dubai based ship owner.",
+          "Gurpreet has also raised USD 250 million in asset-backed financing.",
+          "Gurpreet is a Master Mariner and also holds an MBA from HEC Paris. He has completed shipping asset transactions in excess of USD 9Bn in Gross Asset Value."
         ]
       },
       {
         name: "Hendrik Atsma",
         title: "Technical Director",
-        image: "images/hendrik-placeholder.jpg",
+        image: "./images/hendrik.jpg",
         bio: [
-          "With over 30 years of experience in the maritime industry, Hendrik is a seasoned maritime executive with industry expertise in ship management and operations of Oil, Chemical, Product, LPG Tankers, Dry Bulk and Container vessels.",
-          "Henik also has extensive experience in newbuilding projects and full regulatory compliance. As the Fleet group Director at Bahri (Saudi Listed shipping company), Hendrik managed a fleet Oil, products and chemical tankers.",
-          "Prior to that, at the Mubadala owned Eships, he managed a fleet of bulk carriers and containers vessels, along with tankers.",
-          "Hendrik has a post graduate business management diploma from Windesheim university of Applied Science and a bachelors in engineering degree from Willem Barentsz."
+          "With over 30 years of experience in the maritime industry, Hendrik is a seasoned maritime executive with industry expertise in ship management and operations of oil, chemical, product, LPG tankers, dry bulk and container vessels.",
+          "Hendrik also has extensive experience in newbuilding projects and full regulatory compliance. As Fleet Group Director at Bahri, Hendrik managed a fleet of oil, product and chemical tankers.",
+          "Prior to that, at the Mubadala-owned Eships, he managed a fleet of bulk carriers, container vessels, and tankers.",
+          "Hendrik has a post graduate business management diploma from Windesheim University of Applied Sciences and a bachelor's degree in engineering from Willem Barentsz."
         ]
       },
       {
         name: "Abhishek Mittal",
         title: "Investment Director",
-        image: "images/abhishek-placeholder.jpg",
+        image: "./images/abhishek.jpg",
         bio: [
           "Abhishek has over 20 years of experience in the maritime sector with a large part focused on shipping debt investments.",
-          "He spent over a decade in Amsterdam with DVB bank as part of the shipping finance team where, as an SVP in the team, he led multiple shipping finance mandates.",
-          "A former seafarer, Abhishek has also worked with MUFG, in Amsterdam, as part of the risk team.",
-          "He has completed shipping finance transactions in the maritime industry of over USD1Bn.",
-          "Abhishek holds an MBA from Indian Institute of Management, Bangalore and is also a CFA charterholder."
+          "He spent over a decade in Amsterdam with DVB Bank as part of the shipping finance team where, as an SVP in the team, he led multiple shipping finance mandates.",
+          "A former seafarer, Abhishek has also worked with MUFG in Amsterdam as part of the risk team.",
+          "He has completed shipping finance transactions in the maritime industry of over USD 1Bn.",
+          "Abhishek holds an MBA from the Indian Institute of Management Bangalore and is also a CFA charterholder."
         ]
       }
     ];
@@ -546,7 +580,13 @@
     teamContainer.innerHTML = teamMembers.map(member => `
       <div class="team-card">
         <div class="team-photo-wrap">
-          <img src="${member.image}" alt="${member.name}" class="team-photo">
+          <img
+            src="${member.image}"
+            alt="${member.name}"
+            class="team-photo"
+            loading="lazy"
+            onerror="this.onerror=null; this.src='./images/placeholder.jpg';"
+          >
         </div>
         <div class="team-info">
           <h3>${member.name}</h3>
